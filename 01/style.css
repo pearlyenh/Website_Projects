@@ -1,0 +1,1027 @@
+
+/* =========================
+   1. COLOR PALETTE
+========================= */
+
+:root {
+    --cream: #FAF5E9;
+    --blue: #DCEAF3;
+    --pink: #F3DDE4;
+    --brown: #66534A;
+    --tan: #A88770;
+
+    --paper: #FFF8EA;
+    --dark-paper: #E8C9A8;
+    --soft-brown: #896D5A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--cream);
+    color: var(--brown);
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   2. WELCOME PAGE
+========================= */
+
+.opening-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    animation: fadeIn 1s ease;
+}
+
+.little-heart {
+    font-size: 42px;
+    color: #C98F9F;
+    margin-bottom: 20px;
+    animation: heartbeat 2s infinite;
+}
+
+.top-note {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--tan);
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(75px, 15vw, 130px);
+    font-weight: normal;
+    letter-spacing: 12px;
+    color: var(--brown);
+}
+
+.tagline {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--tan);
+    margin-top: 12px;
+    line-height: 1.7;
+}
+
+.decorative-line {
+    width: 55px;
+    height: 1px;
+    background: var(--tan);
+    margin: 25px 0;
+}
+
+.dedication {
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+#beginButton {
+    background: var(--pink);
+    color: var(--brown);
+    border: 1px solid #E6C9D2;
+    border-radius: 30px;
+    padding: 13px 27px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#beginButton:hover {
+    background: var(--blue);
+    transform: translateY(-3px);
+}
+
+#beginButton:active {
+    transform: scale(0.95);
+}
+
+.bottom-note {
+    position: absolute;
+    bottom: 25px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--tan);
+}
+
+
+/* =========================
+   3. CHAPTER STRUCTURE
+========================= */
+
+.chapter {
+    min-height: 100vh;
+    padding: 90px 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.8s ease;
+}
+
+.chapter-label {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--tan);
+    margin-bottom: 20px;
+}
+
+.chapter h2 {
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.chapter-description {
+    color: var(--tan);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   4. BACK BUTTON
+========================= */
+
+.back-button {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: transparent;
+    border: 1px solid var(--tan);
+    color: var(--brown);
+    padding: 9px 17px;
+    border-radius: 25px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    background: var(--blue);
+}
+
+
+/* =========================
+   5. ENVELOPE DESIGN
+========================= */
+
+.envelope-wrapper {
+    position: relative;
+    width: 220px;
+    height: 145px;
+    margin: 65px 0 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    perspective: 800px;
+    transition: transform 0.3s ease;
+}
+
+.envelope-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    background: var(--pink);
+    border: 1px solid #E6C9D2;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.envelope-body::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-style: solid;
+    border-width: 72px 110px 0 0;
+    border-color: transparent #E8C7D1 transparent transparent;
+}
+
+.envelope-body::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-style: solid;
+    border-width: 72px 0 0 110px;
+    border-color: transparent transparent transparent #F0D5DD;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 85px solid var(--blue);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 4;
+}
+
+.letter {
+    position: absolute;
+    bottom: 8px;
+    left: 15px;
+    width: 190px;
+    height: 115px;
+    background: #FFFCF5;
+    border: 1px solid #E6DCCB;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--brown);
+    font-style: italic;
+    transition: transform 0.8s ease;
+    z-index: 1;
+}
+
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-90px);
+}
+
+.envelope-hint {
+    font-size: 13px;
+    color: var(--tan);
+    font-style: italic;
+}
+
+
+
+/* =========================
+   LETTER AND PROMISE CARDS
+========================= */
+
+.message-card {
+    width: 100%;
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 55px 65px;
+
+    background: #FFFCF5;
+    border: 1px solid #E8DCCB;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 20px rgba(102, 83, 74, 0.08);
+
+    /* Make the letter read naturally */
+    text-align: left;
+}
+
+/* HEART DECORATION */
+
+.message-heart {
+    display: block;
+    color: #C98F9F;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* LETTER GREETING */
+
+.message-card h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+    color: var(--brown);
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+/* LETTER PARAGRAPHS */
+
+.message-card p {
+    width: 100%;
+    max-width: none;
+
+    color: var(--brown);
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.9;
+
+    text-align: left;
+    margin-bottom: 22px;
+
+    overflow-wrap: break-word;
+}
+
+/* ENDING */
+
+.message-card .message-ending {
+    color: var(--tan);
+    font-style: italic;
+    margin-top: 30px;
+}
+
+/* SIGNATURE */
+
+.message-signature {
+    display: block;
+    margin-top: 35px;
+    color: var(--tan);
+    font-family: Georgia, serif;
+    font-style: italic;
+    text-align: right;
+}
+
+/* MOBILE LETTER */
+
+@media (max-width: 550px) {
+    .message-card {
+        padding: 35px 22px;
+        margin: 20px auto;
+    }
+
+    .message-card h2 {
+        font-size: 25px;
+    }
+
+    .message-card p {
+        font-size: 14px;
+        line-height: 1.85;
+    }
+}
+
+
+
+/* =========================
+   7. NEXT BUTTON
+========================= */
+
+.next-button {
+    background: var(--pink);
+    color: var(--brown);
+    border: 1px solid #E6C9D2;
+    border-radius: 25px;
+    padding: 12px 24px;
+    margin: 25px 0;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.next-button:hover {
+    background: var(--blue);
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   8. VINTAGE SCRAPBOOK
+========================= */
+
+#scrapbookPage {
+    background-color: #F5E8D5;
+    background-image:
+        radial-gradient(#D9C3A5 0.6px, transparent 0.6px),
+        linear-gradient(135deg, #F8EEDF, #F0E0C9);
+    background-size: 8px 8px, 100% 100%;
+    color: #66534A;
+    padding: 70px 20px;
+}
+
+#scrapbookPage .chapter-label {
+    color: #98765F;
+    letter-spacing: 4px;
+}
+
+#scrapbookPage > h2 {
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+    font-size: 38px;
+    color: #68483D;
+}
+
+#scrapbookPage .chapter-description {
+    color: #896D5A;
+    font-family: Georgia, serif;
+}
+
+
+/* SCRAPBOOK BACK BUTTON */
+
+#scrapbookPage .back-button {
+    background: #F9F0E3;
+    color: #68483D;
+    border: 1px solid #B99A7D;
+}
+
+
+/* SCRAPBOOK CONTAINER */
+
+.memory-timeline {
+    width: 100%;
+    max-width: 850px;
+    margin: 35px auto;
+    text-align: left;
+}
+
+
+/* MONTH HEADINGS */
+
+.month-heading {
+    position: relative;
+    text-align: center;
+    background: #E8C9A8;
+    padding: 22px 15px;
+    margin: 55px auto 35px;
+    max-width: 500px;
+    transform: rotate(-1deg);
+    box-shadow: 2px 4px 8px #8D705033;
+    clip-path: polygon(
+        2% 5%,
+        98% 0%,
+        100% 90%,
+        95% 100%,
+        4% 96%,
+        0% 10%
+    );
+}
+
+.month-heading span {
+    color: #88664F;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.month-heading h3 {
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+    font-size: 27px;
+    font-weight: normal;
+    color: #67473D;
+    margin: 8px 0;
+}
+
+.month-heading p {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #806453;
+    margin: 0;
+}
+
+
+/* MEMORY PAPER */
+
+.memory-entry {
+    position: relative;
+    background-color: #FFF8EA;
+    background-image:
+        linear-gradient(#D8C6AC22 1px, transparent 1px);
+    background-size: 100% 29px;
+    padding: 28px;
+    margin: 35px auto 55px;
+    max-width: 720px;
+    box-shadow: 3px 5px 12px #80634B33;
+    border: 1px solid #E7D5BC;
+}
+
+
+/* DECORATIVE TAPE */
+
+.memory-entry::before {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 24px;
+    background: #D9B8A2AA;
+    top: -12px;
+    left: 35px;
+    transform: rotate(-5deg);
+}
+
+
+/* MEMORY DATE */
+
+.memory-date {
+    color: #98765F;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin: 5px 0 10px;
+}
+
+
+/* MEMORY TITLE */
+
+.memory-entry h3 {
+    color: #68483D;
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0 0 20px;
+}
+
+
+/* POLAROID PHOTOS */
+
+.memory-photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 18px;
+    margin: 20px 0 25px;
+}
+
+.memory-photos img {
+    display: block;
+    width: calc(50% - 12px);
+    max-width: 270px;
+    height: 245px;
+    object-fit: cover;
+    background: white;
+    padding: 9px 9px 25px;
+    border: 1px solid #E5D9C9;
+    box-shadow: 2px 5px 9px #72543A33;
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.memory-photos img:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.memory-photos img:hover {
+    transform: rotate(0deg) scale(1.04);
+    z-index: 2;
+}
+
+
+/* SINGLE PHOTO */
+
+.memory-photos img:only-child {
+    width: 80%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+
+/* THREE PHOTOS */
+
+.memory-photos img:first-child:nth-last-child(3) {
+    width: 30%;
+    height: 220px;
+}
+
+
+/* MEMORY CAPTION */
+
+.memory-caption {
+    color: #6E5548;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0;
+    text-align: center;
+}
+
+
+/* SCRAPBOOK CONTINUE BUTTON */
+
+#scrapbookPage .next-button {
+    background: #F1D2D1;
+    color: #68483D;
+    border: 1px solid #D4A6A0;
+    border-radius: 25px;
+    padding: 13px 25px;
+    box-shadow: 2px 4px 7px #80634B22;
+}
+
+#scrapbookPage .next-button:hover {
+    background: #DCEAF3;
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   9. FLOATING HEARTS
+========================= */
+
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    font-size: 24px;
+    animation: floatAway 1.5s ease-out forwards;
+}
+
+@keyframes floatAway {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(0.6);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-130px) scale(1.3);
+    }
+}
+
+
+/* =========================
+   10. ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+
+/* =========================
+   11. MOBILE DESIGN
+========================= */
+
+@media (max-width: 550px) {
+
+    .tagline {
+        max-width: 300px;
+        font-size: 14px;
+    }
+
+    .back-button {
+        top: 18px;
+        left: 18px;
+    }
+
+    .chapter {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .chapter h2 {
+        font-size: 26px;
+    }
+
+    .message-card {
+        padding: 30px 20px;
+    }
+
+    .message-card p {
+        font-size: 14px;
+    }
+
+    /* VINTAGE SCRAPBOOK MOBILE */
+
+    #scrapbookPage {
+        padding: 55px 13px 35px;
+    }
+
+    #scrapbookPage > h2 {
+        font-size: 29px;
+    }
+
+    .month-heading h3 {
+        font-size: 22px;
+    }
+
+    .memory-entry {
+        padding: 20px 15px;
+        margin-bottom: 45px;
+    }
+
+    .memory-entry h3 {
+        font-size: 20px;
+    }
+
+    .memory-photos {
+        gap: 10px;
+    }
+
+    .memory-photos img {
+        width: calc(50% - 5px);
+        height: 170px;
+        padding: 6px 6px 18px;
+    }
+
+    .memory-photos img:only-child {
+        width: 95%;
+        height: auto;
+    }
+
+    .memory-photos img:first-child:nth-last-child(3) {
+        width: 30%;
+        height: 130px;
+    }
+
+    .memory-caption {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================
+   12. REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* =========================
+   VINTAGE PROMISE PAGE
+========================= */
+
+.promise-page {
+    background-color: #F5E8D5;
+    background-image:
+        radial-gradient(#D9C3A5 0.6px, transparent 0.6px),
+        linear-gradient(135deg, #F8EEDF, #F0E0C9);
+    background-size: 8px 8px, 100% 100%;
+    padding: 75px 20px;
+}
+
+/* PHOTO FRAME */
+
+.promise-photo {
+    position: relative;
+    width: 100%;
+    max-width: 330px;
+    background: #FFFCF5;
+    padding: 12px 12px 40px;
+    margin: 25px auto 45px;
+    transform: rotate(-2deg);
+    box-shadow: 3px 6px 12px #80634B33;
+    border: 1px solid #E7D5BC;
+}
+
+.promise-photo::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    background: #D9B8A2AA;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    z-index: 2;
+}
+
+.promise-photo img {
+    display: block;
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+}
+
+.photo-caption {
+    display: block;
+    text-align: center;
+    margin-top: 13px;
+    color: #896D5A;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* PROMISE PAPER */
+
+.promise-paper {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    padding: 45px 55px;
+    margin: 0 auto;
+    text-align: left;
+
+    background-color: #FFF8EA;
+    background-image:
+        linear-gradient(#D8C6AC22 1px, transparent 1px);
+    background-size: 100% 30px;
+
+    border: 1px solid #E7D5BC;
+    box-shadow: 3px 5px 12px #80634B33;
+}
+
+/* PAPER DECORATION */
+
+.promise-heart {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    color: #C98F9F;
+    margin-bottom: 20px;
+}
+
+/* PROMISE TITLE */
+
+.promise-paper h3 {
+    color: #68483D;
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+/* PROMISE PARAGRAPHS */
+
+.promise-paper p {
+    color: #6E5548;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    line-height: 1.9;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* PROMISE ENDING */
+
+.promise-paper .promise-ending {
+    color: #98765F;
+    text-align: center;
+    font-style: italic;
+    margin-top: 35px;
+}
+
+/* SIGNATURE */
+
+.promise-signature {
+    color: #896D5A;
+    font-family: "Segoe Print", "Bradley Hand", cursive;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: right;
+    margin-top: 35px;
+}
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+
+    .promise-page {
+        padding: 60px 14px 35px;
+    }
+
+    .promise-photo {
+        max-width: 270px;
+    }
+
+    .promise-photo img {
+        height: 270px;
+    }
+
+    .promise-paper {
+        padding: 32px 22px;
+    }
+
+    .promise-paper h3 {
+        font-size: 21px;
+    }
+
+    .promise-paper p {
+        font-size: 14px;
+        line-height: 1.85;
+    }
+}
+
+
+/* FINAL PROMISE PAGE FIX */
+
+.promise-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 75px 20px 60px;
+    background-color: #F5E8D5;
+}
+
+.promise-photo {
+    display: block;
+    width: 100%;
+    max-width: 330px;
+    margin: 35px auto 45px;
+    padding: 12px 12px 40px;
+    background: #FFFCF5;
+    border: 1px solid #E7D5BC;
+    box-shadow: 3px 6px 12px #80634B33;
+    transform: rotate(-2deg);
+}
+
+.promise-photo img {
+    display: block;
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+}
+
+.promise-paper {
+    display: block;
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 45px 55px;
+    background-color: #FFF8EA;
+    background-image: linear-gradient(
+        #D8C6AC22 1px,
+        transparent 1px
+    );
+    background-size: 100% 30px;
+    border: 1px solid #E7D5BC;
+    box-shadow: 3px 5px 12px #80634B33;
+    text-align: left;
+}
+
+.promise-paper h3 {
+    text-align: left;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.promise-paper p {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+.promise-paper .promise-ending {
+    text-align: center;
+    font-style: italic;
+    margin-top: 35px;
+}
+
+.promise-signature {
+    text-align: right;
+    margin-top: 35px;
+}
+
+@media (max-width: 550px) {
+    .promise-page {
+        padding: 60px 14px 35px;
+    }
+
+    .promise-paper {
+        padding: 32px 22px;
+    }
+
+    .promise-paper h3 {
+        font-size: 21px;
+    }
+
+    .promise-paper p {
+        font-size: 14px;
+    }
+}
+
